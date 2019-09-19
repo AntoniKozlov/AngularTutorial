@@ -1,30 +1,30 @@
 /* HeroSearch private styles */
-.search-result li {
-  border-bottom: 1px solid gray;
+.search-result  {
+  /*border-bottom: 1px solid gray;
   border-left: 1px solid gray;
-  border-right: 1px solid gray;
+  border-right: 1px solid gray;*/
   width: 195px;
-  height: 16px;
+  height: 50px;
   padding: 5px;
   background-color: white;
   cursor: pointer;
   list-style-type: none;
 }
 
-.search-result li:hover {
+.search-result:hover {
   background-color: #607D8B;
 }
 
-.search-result li a {
+.search-result {
   color: #888;
   display: block;
   text-decoration: none;
 }
 
-.search-result li a:hover {
+.search-result:hover {
   color: white;
 }
-.search-result li a:active {
+.search-result:active {
   color: white;
 }
 #search-box {
@@ -33,7 +33,10 @@
 }
 
 
-ul.search-result {
+mat-option.search-result {
   margin-top: 0;
   padding-left: 0;
+}
+.example-full-width {
+  width: 200px;
 }

@@ -14,6 +14,15 @@ import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -21,13 +30,21 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatButtonModule, 
+    MatCheckboxModule,
+    MatIconModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatTableModule,
+    MatPaginatorModule,
+  
 
-// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-// and returns simulated server responses.
-// Remove it when a real server is ready to receive requests.
 HttpClientInMemoryWebApiModule.forRoot(
   InMemoryDataService, { dataEncapsulation: false }
-)
+),
+
+BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
@@ -40,3 +57,4 @@ HttpClientInMemoryWebApiModule.forRoot(
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+
