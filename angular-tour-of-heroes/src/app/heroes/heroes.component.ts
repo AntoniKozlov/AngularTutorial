@@ -15,36 +15,18 @@ export class HeroesComponent implements OnInit {
   
   displayedColumns: string[] = ['id', 'name'];
    dataSource = this.heroService.getHeroes();
-  /*dataSource = this.heroService.getHeroes();*/
- /*new MatTableDataSource<Hero>(this.heroService.getHeroes());*/
 
   heroes: Hero[];
 
   constructor(private heroService: HeroService) { }
 
 
-/*@ViewChild(MatTable, {static: true}) table: MatTable<Hero>;*/
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
     this.heroService.deleteHero(hero).subscribe();
-   
+
     this.dataSource = this.heroService.getHeroes();
-    /*this.dataSource.splice(this.dataSource.indexOf(hero), 1);*/
-
-/*
-     const index = this.dataSource.indexOf(hero, 0);
-    if (index > -1) {
-      this.dataSource.splice(index, 1);
-    }
-    this.table.renderRows();
-*/
-   /*this.dataSource.data.splice(this.heroService.getHeroes().indexOf(hero),1);
-    this.dataSource = new MatTableDataSource<Hero>(this.dataSource.data);*/
-
   }
-
-
-
 
   ngOnInit() {
     this.getHeroes();
@@ -66,9 +48,7 @@ export class HeroesComponent implements OnInit {
 
   }
 
- 
-  
-  
+
   
 }
 
