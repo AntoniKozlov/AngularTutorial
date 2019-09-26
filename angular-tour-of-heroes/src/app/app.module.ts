@@ -21,8 +21,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule, MatTable} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatAutocompleteModule,
     MatTableModule,
     MatPaginatorModule,
+
   
 
 HttpClientInMemoryWebApiModule.forRoot(

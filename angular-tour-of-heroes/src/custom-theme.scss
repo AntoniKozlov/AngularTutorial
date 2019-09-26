@@ -1,0 +1,117 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$angular-tour-of-heroes-primary: mat-palette($mat-indigo);
+$angular-tour-of-heroes-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$angular-tour-of-heroes-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$angular-tour-of-heroes-theme: mat-light-theme($angular-tour-of-heroes-primary, $angular-tour-of-heroes-accent, $angular-tour-of-heroes-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($angular-tour-of-heroes-theme);
+
+
+/*
+// Define a mixin that accepts a theme and outputs the theme-specific styles.
+@mixin candy-carousel-theme($theme) {
+  // Extract the palettes you need from the theme definition.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  // Define any styles affected by the theme.
+  .candy-carousel {
+    // Use mat-color to extract individual colors from a palette.
+    background-color: mat-color($primary);
+    border-color: mat-color($accent, A400);
+  }
+}
+
+@mixin candy-carousel-typography($config) {
+  .candy-carousel {
+    font: {
+      family: mat-font-family($config, body-1);
+      size: mat-font-size($config, body-1);
+      weight: mat-font-weight($config, body-1);
+    }
+  }
+}
+
+
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define your application's custom theme.
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+
+// Include theme styles for Angular Material components.
+@include angular-material-theme($theme);
+
+// Include theme styles for your custom components.
+@include candy-carousel-theme($theme);
+
+.candy-carousel {
+  // Get the default hue for a palette.
+  color: mat-color($primary);
+
+  // Get a specific hue for a palette. 
+  // See https://material.io/archive/guidelines/style/color.html#color-color-palette for hues.
+  background-color: mat-color($accent, 300);
+
+  // Get a relative color for a hue ('lighter' or 'darker')
+  outline-color: mat-color($accent, lighter);
+
+  // Get a contrast color for a hue by adding `-contrast` to any other key.
+  border-color: mat-color($primary, '100-contrast');
+}
+
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include mat-base-typography($custom-typography);
+
+// Override typography for a specific Angular Material components.
+@include mat-checkbox-typography($custom-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($custom-typography);
+
+@include mat-core($custom-typography);
+
+
+
+// Create a config with the default typography levels.
+$config: mat-typography-config();
+
+// Custom header that uses only the Material `font-size` and `font-family`.
+.unicorn-header {
+  font-size: mat-font-size($config, headline);
+  font-family: mat-font-family($config);
+}
+
+// Custom title that uses all of the typography styles from the `title` level.
+.unicorn-title {
+  @include mat-typography-level-to-styles($config, title);
+}*/

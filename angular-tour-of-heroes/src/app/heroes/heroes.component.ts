@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-
-
+import {MatTable} from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-heroes',
@@ -12,9 +12,39 @@ import { HeroService } from '../hero.service';
 })
 
 export class HeroesComponent implements OnInit {
+  
+  displayedColumns: string[] = ['id', 'name'];
+   dataSource = this.heroService.getHeroes();
+  /*dataSource = this.heroService.getHeroes();*/
+ /*new MatTableDataSource<Hero>(this.heroService.getHeroes());*/
+
   heroes: Hero[];
 
   constructor(private heroService: HeroService) { }
+
+
+/*@ViewChild(MatTable, {static: true}) table: MatTable<Hero>;*/
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero).subscribe();
+   
+    this.dataSource = this.heroService.getHeroes();
+    /*this.dataSource.splice(this.dataSource.indexOf(hero), 1);*/
+
+/*
+     const index = this.dataSource.indexOf(hero, 0);
+    if (index > -1) {
+      this.dataSource.splice(index, 1);
+    }
+    this.table.renderRows();
+*/
+   /*this.dataSource.data.splice(this.heroService.getHeroes().indexOf(hero),1);
+    this.dataSource = new MatTableDataSource<Hero>(this.dataSource.data);*/
+
+  }
+
+
+
 
   ngOnInit() {
     this.getHeroes();
@@ -31,38 +61,15 @@ export class HeroesComponent implements OnInit {
     this.heroService.addHero({ name } as Hero)
       .subscribe(hero => {
         this.heroes.push(hero);
+        this.dataSource = this.heroService.getHeroes();
       });
+
   }
 
-  delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
-  }
-
-}
-export interface PeriodicElement {
-position: number;
-  name: string;
+ 
   
-  weight: number;
-  symbol: string;
+  
+  
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20, symbol: 'Ne'},
-];
 
-
-export class TableBasicExample {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-}
