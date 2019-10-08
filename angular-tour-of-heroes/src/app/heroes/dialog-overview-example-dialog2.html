@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+</head>
+<body>
+
+<!--<button class="delete" title="delete hero"   (click)="openDialogUpDate()" ><mat-icon>delete_forever</mat-icon></button>-->
+<form [formGroup]="myFormDialog2" >
+  <h1 mat-dialog-title>Your hero2 is {{data.name | uppercase}}</h1>
+  <div mat-dialog-content>
+
+
+    <mat-form-field>
+      <input  matInput [(ngModel)]="data.name" placeholder="What's name your hero?" formControlName="heroName" >
+    </mat-form-field>
+    <p>Select's level your hero</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.level" formControlName="heroLevel">
+    </mat-form-field>
+
+    <p>Select's age your hero</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.age" formControlName="heroAge">
+    </mat-form-field>
+
+    <p>Select's class for your hero</p>
+    <!-- <mat-form-field>
+       <input matInput [(ngModel)]="data.cls">
+     </mat-form-field>-->
+
+    <mat-form-field>
+      <mat-select [(ngModel)]="data.cls" formControlName="heroCls">
+        <mat-option *ngFor="let cls of clsList" [value]="cls" >{{ cls }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p>Select's power your hero</p>
+    <mat-form-field >
+      <input  matInput [(ngModel)]="data.power" formControlName="heroPower" value="{{data.power}}">
+    </mat-form-field>
+   <!-- <div *ngIf="selectedHero"> </div>-->
+  </div>
+  <div mat-dialog-actions>
+
+
+    <!--<button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data"
+            cdkFocusInitial>Ok</button>-->
+
+    <button mat-raised-button color="primary" (click)="onNoClick()" tabindex="-1"><mat-icon>arrow_back</mat-icon></button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="1" (click)="stopEdit()"><mat-icon>save_alt</mat-icon></button>
+  </div>
+
+  <div class="alert alert-danger"
+       *ngIf="myFormDialog2.controls['heroName'].invalid && myFormDialog2.controls['heroName'].touched
+|| myFormDialog2.controls['heroLevel'].invalid && myFormDialog2.controls['heroLevel'].touched">
+    <p>Проверьте введенные данные</p>
+  </div>
+
+
+</form>
+
+</body>
+</html>
