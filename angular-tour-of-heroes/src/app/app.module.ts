@@ -5,7 +5,7 @@ import { FormsModule }    from '@angular/forms';
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
-import { HeroesComponent }      from './heroes/heroes.component';
+import {DialogOverviewExampleDialog, DialogOverviewExampleDialog2, HeroesComponent} from './heroes/heroes.component';
 import { MessagesComponent }    from './messages/messages.component';
 
 import { AppRoutingModule }     from './app-routing.module';
@@ -23,15 +23,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTableModule, MatTable} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material';
+import { ReactiveFormsModule }   from '@angular/forms';
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
     MatButtonToggleModule,
@@ -39,8 +41,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatAutocompleteModule,
     MatTableModule,
     MatPaginatorModule,
-
-  
+    MatDialogModule,
+    MatMenuModule,
+    MatSelectModule,
+    ReactiveFormsModule,
 
 HttpClientInMemoryWebApiModule.forRoot(
   InMemoryDataService, { dataEncapsulation: false }
@@ -54,9 +58,13 @@ BrowserAnimationsModule
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    DialogOverviewExampleDialog,
+    DialogOverviewExampleDialog2
+
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  entryComponents: [DialogOverviewExampleDialog, DialogOverviewExampleDialog2]
 })
 export class AppModule { }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import {BehaviorSubject} from 'rxjs';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -15,11 +15,21 @@ const httpOptions = {
 export class HeroService {
 
   private heroesUrl = 'api/heroes';  // URL to web api
-
+  dataChange: BehaviorSubject<Hero[]> = new BehaviorSubject<Hero[]>([]);
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
+  dialogData: any;
 
+  get data(): Hero[] {
+    return this.dataChange.value;
+  }
+  getDialogData() {
+    return this.dialogData;
+  }
+  updateHero2 (hero: Hero): void {
+    this.dialogData = hero;
+  }
   /** GET heroes from the server */
   getHeroes (): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
@@ -72,6 +82,9 @@ export class HeroService {
       tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
     );
+  }
+  addHero2 (hero: Hero): void {
+    this.dialogData = hero;
   }
 
   /** DELETE: delete the hero from the server */
