@@ -1,35 +1,17 @@
 <h2>My Heroes</h2>
-<div>
+<!--<div>
   <mat-form-field class="example-full-width">
     <input #heroName matInput placeholder="Hero name:" value="">
   </mat-form-field>
-  <!-- (click) passes input value to add() and then clears the input -->
+
   <button (click)="add(heroName.value); heroName.value=''">
 
     <mat-icon>add_circle</mat-icon>
   </button>
-</div>
-<!--<form [formGroup]="myForm" >-->
-<ol>
-  <!-- <li>
-     <mat-form-field>
-       <input  matInput [(ngModel)]="name" placeholder="What's name your hero?" formControlName="heroName">
-     </mat-form-field>
-  </li>-->
-  <li>
-    <button mat-raised-button (click)="openDialog()">Pick one</button>
-    <!--<button mat-raised-button (click)="addNew()">Pick one</button>-->
-  </li>
-</ol>
-  <!--<div class="alert alert-danger"
-       *ngIf="myForm.controls['heroName'].invalid && myForm.controls['heroName'].touched">
-    <p>Проверьте введенные данные</p>
-  </div>-->
-<!--</form>-->
+</div>-->
+
+    <button class="addH" mat-raised-button (click)="openDialog()">Add hero</button>
 <table #table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
-
-
-
   <!-- Position Column -->
   <ng-container matColumnDef="id" >
     <th mat-header-cell *matHeaderCellDef> id </th>
@@ -39,35 +21,28 @@
   <!-- Name Column -->
   <ng-container matColumnDef="name" >
     <th mat-header-cell *matHeaderCellDef> name </th>
-    <td mat-cell *matCellDef="let hero"  ><a  routerLink="/detail/{{hero.id}}">{{hero.name}}</a></td>
-
+     <td mat-cell *matCellDef="let hero"  >{{hero.name}}</td>
   </ng-container>
   <ng-container matColumnDef="level" >
     <th mat-header-cell *matHeaderCellDef> level </th>
-    <td mat-cell *matCellDef="let hero"  ><span (click)="startEdit(i, hero.id, hero.name, hero.level, hero.age, hero.cls, hero.power)" >{{hero.level}}</span></td>
-
+      <td mat-cell *matCellDef="let hero"  >{{hero.level}}</td>
   </ng-container>
   <ng-container matColumnDef="age" >
     <th mat-header-cell *matHeaderCellDef> age </th>
-    <td mat-cell *matCellDef="let hero"  ><span (click)="startEdit(i, hero.id, hero.name, hero.level, hero.age, hero.cls, hero.power)" >{{hero.age}}</span></td>
-
+     <td mat-cell *matCellDef="let hero"  >{{hero.age}}</td>
   </ng-container>
   <ng-container matColumnDef="cls" >
     <th mat-header-cell *matHeaderCellDef> cls </th>
-    <td mat-cell *matCellDef="let hero"  ><span (click)="startEdit(i, hero.id, hero.name, hero.level, hero.age, hero.cls, hero.power)" >{{hero.cls}}</span></td>
-    </ng-container>
-  <ng-container matColumnDef="power" >
-    <th mat-header-cell *matHeaderCellDef> power </th>
-    <td mat-cell *matCellDef="let hero; let i=index;"><span (click)="startEdit(i, hero.id, hero.name, hero.level, hero.age, hero.cls, hero.power)" >{{hero.power}}</span>
-      <button class="delete" title="delete hero"   (click)="delete(hero)" ><mat-icon>delete_forever</mat-icon></button></td>
+    <td mat-cell *matCellDef="let hero"  >{{hero.cls}}</td>
+     </ng-container>
+   <ng-container matColumnDef="power" >
+     <th mat-header-cell *matHeaderCellDef> power </th>
+     <td mat-cell *matCellDef="let hero; let i=index;">{{hero.power}}
+       <button class="delete" title="delete hero"   (click)="delete(hero)" ><mat-icon>delete_forever</mat-icon></button></td>
+   </ng-container>
 
-  </ng-container>
-
-
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
-  <tr mat-row *matRowDef="let hero; columns: displayedColumns;" ></tr>
-</table>
-<mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
+   <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+   <tr mat-row *matRowDef="let hero; columns: displayedColumns;" (click)="startEdit(i, hero.id, hero.name, hero.level, hero.age, hero.cls, hero.power)"></tr>
+ </table>
+ <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons></mat-paginator>
 

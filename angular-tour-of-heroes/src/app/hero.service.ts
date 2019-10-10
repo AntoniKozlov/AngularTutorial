@@ -15,21 +15,12 @@ const httpOptions = {
 export class HeroService {
 
   private heroesUrl = 'api/heroes';  // URL to web api
-  dataChange: BehaviorSubject<Hero[]> = new BehaviorSubject<Hero[]>([]);
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
-  dialogData: any;
 
-  get data(): Hero[] {
-    return this.dataChange.value;
-  }
-  getDialogData() {
-    return this.dialogData;
-  }
-  updateHero2 (hero: Hero): void {
-    this.dialogData = hero;
-  }
+
+
   /** GET heroes from the server */
   getHeroes (): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
@@ -83,9 +74,7 @@ export class HeroService {
       catchError(this.handleError<Hero>('addHero'))
     );
   }
-  addHero2 (hero: Hero): void {
-    this.dialogData = hero;
-  }
+
 
   /** DELETE: delete the hero from the server */
   deleteHero (hero: Hero | number): Observable<Hero> {

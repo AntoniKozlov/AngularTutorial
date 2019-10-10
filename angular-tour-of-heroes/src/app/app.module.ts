@@ -45,6 +45,7 @@ import { ReactiveFormsModule }   from '@angular/forms';
     MatMenuModule,
     MatSelectModule,
     ReactiveFormsModule,
+   // ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
 
 HttpClientInMemoryWebApiModule.forRoot(
   InMemoryDataService, { dataEncapsulation: false }

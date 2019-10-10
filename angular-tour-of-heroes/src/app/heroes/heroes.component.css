@@ -43,7 +43,9 @@ table {
  a:hover {
   color:#607D8B;
 }
-
+.addH{
+  margin: 30px 30px;
+}
 .heroes .badge {
   display: inline-block;
   font-size: small;
@@ -79,7 +81,7 @@ button:hover {
 button.delete {
   /*position: relative;*/
   float:right;
-  
+
   background-color: gray !important;
   color: white;
 }

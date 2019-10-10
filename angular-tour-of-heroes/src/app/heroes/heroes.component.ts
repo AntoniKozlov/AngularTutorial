@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA , MatDialogConfig} from '@angular/material/dialog';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
 //import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
-
+import {Injectable, Optional} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
@@ -43,7 +43,6 @@ export class HeroesComponent implements OnInit {
     })*/
 
   }
-
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
@@ -127,23 +126,14 @@ export class HeroesComponent implements OnInit {
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
     this.heroService.deleteHero(hero).subscribe();
-
     this.dataSource = this.heroService.getHeroes();
   }
 
   ngOnInit() {
-    //this.getHeroes();
-   // this.dataSource.paginator = this.paginator;
-    /*this.heroService.getHeroes().subscribe ( heroes => {
-      this.dataSource.data = heroes;
-    })*/
-
-   // this.getHeroes();
-    this.heroService.getHeroes().subscribe(results => {
+      this.heroService.getHeroes().subscribe(results => {
       this.heroes = results;
       this.dataSource = new MatTableDataSource(this.heroes);
       this.dataSource.paginator = this.paginator;
-
     });
     //console.dir(this.dataSource);
    // this.paginator._changePageSize(this.paginator.pageSize);
@@ -169,15 +159,7 @@ export class HeroesComponent implements OnInit {
 
       });
   }
-/*
-  myForm : FormGroup = new FormGroup({
-    "heroName": new FormControl("", [Validators.pattern("^([а-яА-ЯёЁa-zA-Z])+([а-яА-ЯёЁa-zA-Z0-9]+)?$"),Validators.required])
-  });*/
- /* refresh() {
-    this.heroService.getHeroes().subscribe((heroes) => {
-      this.user = new MatTableDataSource<Hero[]>(this.heroes);
-    });
-  }*/
+
   exampleDatabase: HeroService | null;
   index: number;
   id: number;
@@ -199,20 +181,22 @@ export class HeroesComponent implements OnInit {
         // When using an edit things are little different, firstly we find record inside DataService by id
         /*  this.heroService.getHero(id)
             .subscribe(hero => this.hero = hero);*/
-        const foundIndex = this.heroService.dataChange.value.findIndex(x => x.id === this.id);
+       /* const foundIndex = this.heroService.dataChange.value.findIndex(x => x.id === this.id);
         console.log(id);
         console.log(this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.heroService.dataChange.value[foundIndex] = this.heroService.getDialogData();
-        console.log(this.heroService.dataChange.value[foundIndex]);
+        console.log(this.heroService.dataChange.value[foundIndex]);*/
        // this.heroService.getHero(id).subscribe(hero => this.hero = hero);
         // And lastly refresh table
-        this.refreshTable();
-      this.heroService.updateHero2(this.hero);
+      this.dataSource = this.heroService.getHeroes();
 
-
+      //this.dataSource.paginator = this.paginator;
+     // this.heroService.updateHero2(this.hero);
+      //this.dataSource.data = this.heroService.getHeroes();
+      this.refreshTable();
     });
-    this.dataSource.data = this.heroService.getHeroes();
+
   }
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
@@ -239,12 +223,6 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 
-/*
-  public confirmAdd(): void {
-    //this.dataSource.addHero(this.data);
-    this.dataSource.updateHero(this.data)
-      .subscribe(() => this.onNoClick());
-  }*/
   myFormDialog : FormGroup = new FormGroup({
     "heroName": new FormControl("", [Validators.pattern("^([а-яА-ЯёЁa-zA-Z])+([а-яА-ЯёЁa-zA-Z0-9]+)?$"),Validators.required]),
     "heroLevel": new FormControl("", [Validators.pattern("^[1-9]([0-9]+)?$"),Validators.required]),
@@ -268,17 +246,13 @@ export class DialogOverviewExampleDialog2 implements OnInit{
   dataSource: any;
   clls;
   clsList = ['Monster', 'Winder', 'Doctor', 'Blocker', 'Water'];
+
   constructor(
     public dialogRefUpdate: MatDialogRef<DialogOverviewExampleDialog2>,
     private route: ActivatedRoute,
     private heroService: HeroService,
     private location: Location,
     @Inject(MAT_DIALOG_DATA) public data: Hero) {}
-
-  onNoClickUpDate(): void {
-    this.dialogRefUpdate.close();
-    this.location.back();
-  }
 
   myFormDialog2 : FormGroup = new FormGroup({
     "heroName": new FormControl("", [Validators.pattern("^([а-яА-ЯёЁa-zA-Z])+([а-яА-ЯёЁa-zA-Z0-9]+)?$"),Validators.required]),
@@ -290,25 +264,17 @@ export class DialogOverviewExampleDialog2 implements OnInit{
   });
 
   ngOnInit(): void {
-   // this.getHero();
-    //this.heroService.getHeroes().subscribe(results => {
-    //  this.heroes = results;
-      //this.dataSource = new MatTableDataSource(this.heroes);
-      //this.dataSource.paginator = this.paginator;
-    //});
+    console.log('Dialog got', this.data);
   }
 
-  /*getHero(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
-  }*/
   onNoClick(): void {
     this.dialogRefUpdate.close();
   }
 
   stopEdit(): void {
-    this.heroService.updateHero2(this.data);
-
+    this.heroService.updateHero(this.data).subscribe();
+    this.heroService.getHeroes().subscribe((heroes: Hero[]) => {
+      this.dataSource = heroes;
+    })
   }
 }
