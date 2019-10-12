@@ -1,13 +1,10 @@
 /* HeroesComponent's private CSS styles */
-
-
-
-
 table {
   width: 100%;
+
 }
 
-
+/*
 .heroes {
   margin: 0 0 2em 0;
   list-style-type: none;
@@ -31,21 +28,18 @@ table {
 }
 
  a {
-
   color: #888;
   text-decoration: none;
- /* position: relative;
-  display: block;*/
   width: 250px;
-
 }
 
  a:hover {
   color:#607D8B;
-}
+}*/
 .addH{
   margin: 30px 30px;
 }
+/*
 .heroes .badge {
   display: inline-block;
   font-size: small;
@@ -61,7 +55,7 @@ table {
   text-align: right;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
-}
+}*/
 
 button {
   background-color: #eee;
@@ -77,11 +71,49 @@ button:hover {
   background-color: #cfd8dc;
   transform: scale(1.2);
 }
-
-button.delete {
-  /*position: relative;*/
+button.add {
   float:right;
-
+  /* background-color: gray !important;
+   color: white;*/
+}
+button.delete {
+  float:right;
   background-color: gray !important;
   color: white;
+}
+button.edit {
+  float:right;
+  margin-right:10px;
+  /* background-color: gray !important;
+   color: white;*/
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/* Filter */
+
+
+td.mat-cell:nth-child(1),
+th.mat-header-cell:nth-child(1){
+  flex: 0 0 6%;
+}
+
+td.mat-cell:nth-child(2),
+th.mat-header-cell:nth-child(2){
+  flex: 0 0 30%;
+}
+
+td.mat-cell:nth-child(3),
+th.mat-header-cell:nth-child(3){
+  flex: 0 0 6%;
+}
+
+td.mat-cell:nth-child(7),
+th.mat-header-cell:nth-child(7){
+  flex: 0 0 7%;
 }

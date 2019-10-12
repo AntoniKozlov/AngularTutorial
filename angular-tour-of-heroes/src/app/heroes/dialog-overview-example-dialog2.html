@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 </head>
 <body>
-<form [formGroup]="myFormDialog2" novalidate="">
+<form [formGroup]="myFormDialog2">
   <h1 mat-dialog-title>Your hero2 is {{data.name | uppercase}}</h1>
   <div mat-dialog-content>
     <mat-form-field>
@@ -37,12 +37,12 @@
   <!--<div>
     {{myFormDialog2.value | json}}
   </div>-->
-  <div class="alert alert-danger"
-       *ngIf="myFormDialog.controls['heroName'].invalid && myFormDialog.controls['heroName'].touched
-         || myFormDialog.controls['heroLevel'].invalid && myFormDialog.controls['heroLevel'].touched
-         || myFormDialog.controls['heroAge'].invalid && myFormDialog.controls['heroAge'].touched
-         || myFormDialog.controls['heroCls'].invalid && myFormDialog.controls['heroCls'].touched
-         || myFormDialog.controls['heroPower'].invalid && myFormDialog.controls['heroPower'].touched">
+  <div
+       *ngIf="myFormDialog2.controls['heroName'].invalid && myFormDialog2.controls['heroName'].touched
+         || myFormDialog2.controls['heroLevel'].invalid && myFormDialog2.controls['heroLevel'].touched
+         || myFormDialog2.controls['heroAge'].invalid && myFormDialog2.controls['heroAge'].touched
+         || myFormDialog2.controls['heroCls'].invalid && myFormDialog2.controls['heroCls'].touched
+         || myFormDialog2.controls['heroPower'].invalid && myFormDialog2.controls['heroPower'].touched">
     <p>Проверьте введенные данные</p>
   </div>
 </form>
