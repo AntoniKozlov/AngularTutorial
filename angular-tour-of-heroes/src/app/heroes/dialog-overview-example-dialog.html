@@ -4,30 +4,31 @@
     <meta charset="UTF-8">
 </head>
 <body>
+
 <form [formGroup]="myFormDialog"  >
       <h1 mat-dialog-title>Your hero is {{data.name}}</h1>
+
         <div mat-dialog-content>
           <mat-form-field>
             <input  matInput [(ngModel)]="data.name" placeholder="What's name your hero?" formControlName="heroName">
           </mat-form-field>
-          <p>Select's level your hero</p>
+
           <mat-form-field>
-            <input matInput [(ngModel)]="data.level" formControlName="heroLevel">
-          </mat-form-field>
-          <p>Select's age your hero</p>
-          <mat-form-field>
-            <input matInput [(ngModel)]="data.age" formControlName="heroAge">
+            <input matInput [(ngModel)]="data.level" placeholder="Select level your hero" formControlName="heroLevel">
           </mat-form-field>
 
-          <p>Select's class for your hero</p>
+          <mat-form-field>
+            <input matInput [(ngModel)]="data.age" placeholder="Select age your hero" formControlName="heroAge">
+          </mat-form-field>
+          <p>Select class for your hero</p>
              <mat-form-field>
-               <mat-select [(ngModel)]="data.cls" formControlName="heroCls">
+               <mat-select [(ngModel)]="data.cls"  formControlName="heroCls">
                  <mat-option *ngFor="let cls of clsList" [value]="cls" >{{ cls }}</mat-option>
                </mat-select>
              </mat-form-field>
-          <p>Select's power your hero</p>
+
              <mat-form-field>
-               <input matInput [(ngModel)]="data.power" formControlName="heroPower" >
+               <input matInput [(ngModel)]="data.power" placeholder="Select power your hero" formControlName="heroPower" >
              </mat-form-field>
            </div>
            <div mat-dialog-actions>
@@ -43,6 +44,7 @@
          || myFormDialog.controls['heroPower'].invalid && myFormDialog.controls['heroPower'].touched">
     <p>Проверьте введенные данные</p>
   </div>
+
 </form>
 </body>
 </html>

@@ -95,25 +95,3 @@ button.edit {
 
 
 
-/* Filter */
-
-
-td.mat-cell:nth-child(1),
-th.mat-header-cell:nth-child(1){
-  flex: 0 0 6%;
-}
-
-td.mat-cell:nth-child(2),
-th.mat-header-cell:nth-child(2){
-  flex: 0 0 30%;
-}
-
-td.mat-cell:nth-child(3),
-th.mat-header-cell:nth-child(3){
-  flex: 0 0 6%;
-}
-
-td.mat-cell:nth-child(7),
-th.mat-header-cell:nth-child(7){
-  flex: 0 0 7%;
-}
