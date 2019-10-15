@@ -10,7 +10,9 @@
   cursor: pointer;
   list-style-type: none;
 }
-
+.search-component {
+  text-align: center;
+}
 .search-result:hover {
   background-color: #607D8B;
 }

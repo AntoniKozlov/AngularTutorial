@@ -29,3 +29,8 @@ button:disabled {
   color: #ccc;
   cursor: auto;
 }
+.posDetail {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}

@@ -5,7 +5,7 @@ import { FormsModule }    from '@angular/forms';
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
-import {DialogOverviewExampleDialog, DialogOverviewExampleDialog2, HeroesComponent} from './heroes/heroes.component';
+import { DialogOverviewExampleDialog, DialogOverviewExampleDialog2, DialogDelete, HeroesComponent } from './heroes/heroes.component';
 import { MessagesComponent }    from './messages/messages.component';
 
 import { AppRoutingModule }     from './app-routing.module';
@@ -61,11 +61,12 @@ BrowserAnimationsModule
     MessagesComponent,
     HeroSearchComponent,
     DialogOverviewExampleDialog,
-    DialogOverviewExampleDialog2
+    DialogOverviewExampleDialog2,
+    DialogDelete,
 
   ],
   bootstrap: [ AppComponent ],
-  entryComponents: [DialogOverviewExampleDialog, DialogOverviewExampleDialog2]
+  entryComponents: [DialogOverviewExampleDialog, DialogOverviewExampleDialog2, DialogDelete]
 })
 export class AppModule { }
 

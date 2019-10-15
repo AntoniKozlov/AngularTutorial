@@ -72,12 +72,12 @@ export class HeroesComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  delete(hero: Hero): void {
+  /*delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
     this.heroService.deleteHero(hero).subscribe();
     this.heroService.getHeroes().subscribe((heroes: Hero[]) => {
       this.dataSource.data = heroes;});
-}
+}*/
 
   ngOnInit() {
     this.heroService.getHeroes().subscribe(results => {
@@ -119,6 +119,19 @@ export class HeroesComponent implements OnInit {
     });
 
   }
+  openDelete(hero: Hero, id: number, name: string, level: number, age: number, cls: string, power: number) {
+    const dialogRefDelete = this.dialog.open(DialogDelete, {
+      width: '250px',
+      data: {id: id, name: name, level: level, age: age, cls: cls, power: power}
+    });
+
+    dialogRefDelete.afterClosed().subscribe(heroes => {
+
+      this.heroService.getHeroes().subscribe((heroes: Hero[]) => {
+        this.dataSource.data = heroes;});
+    });
+
+  }
 }
 
 
@@ -143,7 +156,7 @@ export class DialogOverviewExampleDialog {
     console.log('Dialog got', this.data);
   }
   myFormDialog : FormGroup = new FormGroup({
-    "heroName": new FormControl("", [Validators.pattern("^([а-яА-ЯёЁa-zA-Z])+([а-яА-ЯёЁa-zA-Z0-9]+)?$"),Validators.required]),
+    "heroName": new FormControl("", [Validators.pattern("^([а-яА-ЯёЁa-zA-Z])+([ ]?[а-яА-ЯёЁa-zA-Z0-9]+)+$"),Validators.required]),
     "heroLevel": new FormControl("", [Validators.pattern("^[1-9]([0-9]+)?$"),Validators.required]),
     "heroAge": new FormControl("", [Validators.pattern("^[0-9]+$"),Validators.required]),
     "heroPower": new FormControl("", [Validators.pattern("^[0-9]+$"),Validators.required]),
@@ -174,7 +187,7 @@ export class DialogOverviewExampleDialog2 implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data: Hero) {}
 
   myFormDialog2 : FormGroup = new FormGroup({
-    "heroName": new FormControl("", [Validators.pattern("^([а-яА-ЯёЁa-zA-Z])+([а-яА-ЯёЁa-zA-Z0-9]+)?$"),Validators.required]),
+    "heroName": new FormControl("", [Validators.pattern("^([а-яА-ЯёЁa-zA-Z])+([ ]?[а-яА-ЯёЁa-zA-Z0-9]+)+$"),Validators.required]),
     "heroLevel": new FormControl("", [Validators.pattern("^[1-9]([0-9]+)?$"),Validators.required]),
     "heroAge": new FormControl("", [Validators.pattern("^[0-9]+$"),Validators.required]),
     "heroPower": new FormControl("", [Validators.pattern("^[0-9]+$"),Validators.required]),
@@ -193,5 +206,36 @@ export class DialogOverviewExampleDialog2 implements OnInit{
   stopEdit(): void {
     this.heroService.updateHero(this.data).subscribe();
 
+  }
+}
+@Component({
+  selector: 'dialog-delete',
+  templateUrl: 'dialog-delete.html',
+})
+export class DialogDelete implements OnInit{
+  @Input() hero: Hero;
+  heroes: Hero[];
+  dataSource: any;
+  clls;
+  clsList = ['Monster', 'Winder', 'Doctor', 'Blocker', 'Water'];
+
+  constructor(
+    public dialogRefDelete: MatDialogRef<DialogDelete>,
+    private route: ActivatedRoute,
+    private heroService: HeroService,
+    private location: Location,
+    @Inject(MAT_DIALOG_DATA) public data: Hero) {}
+
+
+  ngOnInit(): void {
+    console.log('Dialog got', this.data);
+  }
+
+  onNoDelete(): void {
+    this.dialogRefDelete.close();
+  }
+
+  confirmDelete(): void {
+    this.heroService.deleteHero(this.data).subscribe();
   }
 }

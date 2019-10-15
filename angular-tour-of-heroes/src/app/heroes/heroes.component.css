@@ -92,6 +92,8 @@ button.edit {
   display: flex;
   flex-direction: column;
 }
-
+h2 {
+  text-align: center;
+}
 
 
