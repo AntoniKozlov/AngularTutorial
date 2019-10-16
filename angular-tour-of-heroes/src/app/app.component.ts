@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-
-
+import { Component, NgModule, VERSION } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,18 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Tour of Heroes';
-
-  changeColorDash():void{/*
-    var eldash = document.getElementsByClassName("navDashboard");
-    var elhero = document.getElementsByClassName("navHeroes");
-    if (eldash == true) {
-      eldash.styles.background = "black";
-    }*/
-  }
-  changeColorHeroes():void{
-
-  }
+  constructor(private location: Location) { }
+  isActive(viewLocation) {
+    return viewLocation === this.location.path();
+  };
 }
+
 
 
 

@@ -1,7 +1,11 @@
 <h1>{{title}}</h1>
-<nav>
-  <a mat-raised-button class="navDashboard"  (click)="changeColorDash()" routerLink="/dashboard"><mat-icon>airplay</mat-icon>Dashboard</a>
-  <a mat-raised-button class="navHeroes" (click)="changeColorHeroes()" routerLink="/heroes"><mat-icon>work</mat-icon>Heroes</a>
+<nav >
+  <a mat-raised-button class="navDashboard"
+     [ngStyle]="{ 'background-color' : isActive('/dashboard')? '#cfd8dc' : '#eee', 'color' : isActive('/dashboard')? '#039be5' : '#607d8b' }"
+     routerLink="/dashboard"><mat-icon>airplay</mat-icon>Dashboard</a>
+  <a mat-raised-button class="navHeroes"
+     [ngStyle]="{ 'background-color' : isActive('/heroes')? '#cfd8dc' : '#eee', 'color' : isActive('/heroes')? '#039be5' : '#607d8b' }"
+     routerLink="/heroes"><mat-icon>work</mat-icon>Heroes</a>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
