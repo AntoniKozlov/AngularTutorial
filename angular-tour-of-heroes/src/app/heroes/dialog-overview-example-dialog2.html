@@ -5,7 +5,7 @@
 </head>
 <body>
 <form [formGroup]="myFormDialog2" novalidate>
-  <h1 mat-dialog-title>Your hero2 is {{data.name | uppercase}}</h1>
+  <h1 mat-dialog-title>Your hero is {{data.name | uppercase}}</h1>
   <div mat-dialog-content>
     <mat-form-field>
       <input  matInput [(ngModel)]="data.name" placeholder="What's name your hero?" formControlName="heroName" >

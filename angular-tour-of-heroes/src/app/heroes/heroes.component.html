@@ -16,7 +16,7 @@
   <!-- Position Column -->
   <ng-container matColumnDef="id" >
     <th mat-header-cell *matHeaderCellDef> id </th>
-    <td mat-cell  *matCellDef="let hero" >{{hero.id}}</td>
+    <td mat-cell  *matCellDef="let hero" >{{hero._id}}</td>
   </ng-container>
 
   <!-- Name Column -->
@@ -50,8 +50,8 @@
     </th>
 
     <td mat-cell *matCellDef="let hero; let i=index;">
-      <button class="delete" title="Delete hero"   (click)="openDelete(hero, hero.id, hero.name, hero.level, hero.age, hero.cls, hero.power)" ><mat-icon>delete_forever</mat-icon></button>
-      <button class="edit" title="Edit hero"   (click)="startEdit(i, hero.id, hero.name, hero.level, hero.age, hero.cls, hero.power)" ><mat-icon>edit</mat-icon></button>
+      <button class="delete" title="Delete hero"   (click)="openDelete(hero, hero._id, hero.name, hero.level, hero.age, hero.cls, hero.power)" ><mat-icon>delete_forever</mat-icon></button>
+      <button class="edit" title="Edit hero"   (click)="startEdit(i, hero, hero._id, hero.name, hero.level, hero.age, hero.cls, hero.power)" ><mat-icon>edit</mat-icon></button>
 
 
     </td>

@@ -1,55 +1,65 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable , Inject} from '@angular/core';
+import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-
+import { Http, Headers, Response } from '@angular/http';
 import { Hero } from './hero';
 import { MessageService } from './message.service';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new Headers({ 'Content-Type': 'application/json' })
 };
 
 @Injectable({ providedIn: 'root' })
 export class HeroService {
 
-  private heroesUrl = 'api/heroes';  // URL to web api
+  //private heroesUrl = 'api/heroes/';  // URL to web api
+  private heroesDeleteUrl = 'http://localhost:8080/api/deleteUser/';
+  private heroesGetUrl = 'http://localhost:8080/api/getUser/';
+  private heroesGetUrlFor = 'http://localhost:8080/api/getUser/';
+  //private heroesUpdateUrl = 'api/updateUser';
+  private heroesUpdateUrl = 'http://localhost:8080/api/updateUser/';
+  private heroesSaveUrl = 'http://localhost:8080/api/SaveUser/';
   constructor(
-    private http: HttpClient,
+    @Inject(Http)
+    private http: Http,
     private messageService: MessageService) { }
 
 
 
-  /** GET heroes from the server */
+  /** GET heroes from the server **/
   getHeroes (): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl)
+    return this.http.get<Hero[]>(this.heroesGetUrl)//.subscribe(response => console.log(response))
       .pipe(
+        map((response: Response) =>response.json()),
         tap(_ => this.log('fetched heroes')),
         catchError(this.handleError('getHeroes', []))
+      //subscribe(response => console.log(response))
       );
   }
 
   /** GET hero by id. Return `undefined` when id not found */
-  getHeroNo404<Data>(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/?id=${id}`;
+  getHeroNo404<Data>(_id: String): Observable<Hero> {
+    const url = `${this.heroesGetUrl}?id=${_id}`;
     return this.http.get<Hero[]>(url)
       .pipe(
         map(heroes => heroes[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} hero id=${id}`);
+          this.log(`${outcome} hero id=${_id}`);
         }),
-        catchError(this.handleError<Hero>(`getHero id=${id}`))
+        catchError(this.handleError<Hero>(`getHero id=${_id}`))
       );
   }
 
   /** GET hero by id. Will 404 if id not found */
-  getHero(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/${id}`;
+  getHero(_id: String): Observable<Hero> {
+    const url = `${this.heroesGetUrl}${_id}`;
     return this.http.get<Hero>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Hero>(`getHero id=${id}`))
+      map((response: Response) =>response.json()),
+      tap(_ => this.log(`fetched hero id=${_id}`)),
+      catchError(this.handleError<Hero>(`getHero id=${_id}`))
     );
   }
 
@@ -59,7 +69,8 @@ export class HeroService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+    return this.http.get<Hero[]>(`${this.heroesGetUrl}?name=${term}`).pipe(
+      map((response: Response) =>response.json()),
       tap(_ => this.log(`found heroes matching "${term}"`)),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
@@ -69,19 +80,25 @@ export class HeroService {
 
   /** POST: add a new hero to the server */
   addHero (hero: Hero): Observable<Hero> {
-    return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
-      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+    return this.http.post<Hero>(this.heroesSaveUrl, hero, httpOptions)
+      .pipe(
+      map((response: Response) =>(response.json().mod)),
+       // map((hero: Hero) => (hero.id = hero._id)),
+      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero._id}`)),
       catchError(this.handleError<Hero>('addHero'))
-    );
+    )
+      //.subscribe(response => console.log(response))
+      ;
   }
 
 
   /** DELETE: delete the hero from the server */
   deleteHero (hero: Hero | number): Observable<Hero> {
-    const id = typeof hero === 'number' ? hero : hero.id;
-    const url = `${this.heroesUrl}/${id}`;
+    const id = typeof hero === 'number' ? hero : hero._id;
+    const url = `${this.heroesDeleteUrl}${id}`;
 
     return this.http.delete<Hero>(url, httpOptions).pipe(
+      map((response: Response) =>response.json()),
       tap(_ => this.log(`deleted hero id=${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
@@ -89,8 +106,12 @@ export class HeroService {
 
   /** PUT: update the hero on the server */
   updateHero (hero: Hero): Observable<any> {
-    return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
+   // const id = /*typeof hero === 'number' ? hero :*/ ;
+    const url = `${this.heroesUpdateUrl}${hero._id}`;
+    return this.http.put(url, hero, httpOptions).pipe(
+     // map((response: Response) => response.json()),
+      map((response: Response) =>response.json()),
+      tap(_ => this.log(`updated hero id=${hero._id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
   }

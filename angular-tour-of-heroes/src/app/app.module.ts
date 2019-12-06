@@ -27,12 +27,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material';
 import { ReactiveFormsModule }   from '@angular/forms';
+import { HttpModule } from '@angular/http';
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpModule,
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,

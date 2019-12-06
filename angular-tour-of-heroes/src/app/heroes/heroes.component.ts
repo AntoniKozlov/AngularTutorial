@@ -105,12 +105,12 @@ export class HeroesComponent implements OnInit {
 
   exampleDatabase: HeroService | null;
   index: number;
-  id: number;
+  _id: number;
 
-  startEdit(i: number, id: number, name: string, level: number, age: number, cls: string, power: number) {
+  startEdit(i: number, hero: Hero, _id: number, name: string, level: number, age: number, cls: string, power: number) {
     const dialogRefUpdate = this.dialog.open(DialogOverviewExampleDialog2, {
       width: '250px',
-      data: {id: id, name: name, level: level, age: age, cls: cls, power: power}
+      data: {_id: _id, name: name, level: level, age: age, cls: cls, power: power}
     });
 
     dialogRefUpdate.afterClosed().subscribe(heroes => {
@@ -119,10 +119,10 @@ export class HeroesComponent implements OnInit {
     });
 
   }
-  openDelete(hero: Hero, id: number, name: string, level: number, age: number, cls: string, power: number) {
+  openDelete(hero: Hero, _id: number, name: string, level: number, age: number, cls: string, power: number) {
     const dialogRefDelete = this.dialog.open(DialogDelete, {
       width: '250px',
-      data: {id: id, name: name, level: level, age: age, cls: cls, power: power}
+      data: {_id: _id, name: name, level: level, age: age, cls: cls, power: power}
     });
 
     dialogRefDelete.afterClosed().subscribe(heroes => {

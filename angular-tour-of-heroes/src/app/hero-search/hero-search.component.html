@@ -14,7 +14,7 @@
   <mat-form-field class="example-full-width">
     <input type="text" #searchBox id="search-box" (input)="search(searchBox.value)" matInput placeholder="Hero Search" value="" aria-label="Number" matInput  [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option  class="search-result" *ngFor="let hero of heroes$ | async" routerLink="/detail/{{hero.id}}">
+      <mat-option  class="search-result" *ngFor="let hero of heroes$ | async" routerLink="/detail/{{hero._id}}">
       	<!--<a  routerLink="/detail/{{hero.id}}">-->
         {{hero.name}}
         <!--</a>-->
