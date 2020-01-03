@@ -34,12 +34,16 @@ export class HeroesComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'name', 'level', 'age', 'cls', 'power', 'actions'];
 
-  constructor(private heroService: HeroService, public dialog: MatDialog) {
+  constructor(private heroService: HeroService, public dialog: MatDialog, private location: Location) {
     /*this.heroService.getHeroes().subscribe ( heroes => {
       this.dataSource.data = heroes;
     //  this.dataSource.data = this.heroService.getHeroes();
     })*/
   }
+
+  isActive(viewLocation) {
+    return viewLocation === this.location.path();
+  };
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -225,6 +229,7 @@ export class DialogDelete implements OnInit{
     private heroService: HeroService,
     private location: Location,
     @Inject(MAT_DIALOG_DATA) public data: Hero) {}
+
 
 
   ngOnInit(): void {

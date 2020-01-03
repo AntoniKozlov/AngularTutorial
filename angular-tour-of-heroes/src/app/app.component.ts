@@ -1,6 +1,8 @@
 import { Component, NgModule, VERSION } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location ,CommonModule} from '@angular/common';
+import { AuthenticationService } from './authentication.service';//+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +10,7 @@ import { Location } from '@angular/common';
 })
 export class AppComponent {
   title = 'Tour of Heroes';
-  constructor(private location: Location) { }
+  constructor(private location: Location, public auth: AuthenticationService) { }
   isActive(viewLocation) {
     return viewLocation === this.location.path();
   };

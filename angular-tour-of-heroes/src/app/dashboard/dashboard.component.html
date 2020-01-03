@@ -1,3 +1,14 @@
+<h1>{{title}}</h1>
+<nav >
+  <a mat-raised-button class="navDashboard"
+     [ngStyle]="{ 'background-color' : isActive('/dashboard')? '#cfd8dc' : '#eee', 'color' : isActive('/dashboard')? '#039be5' : '#607d8b' }"
+     routerLink="/dashboard"><mat-icon>airplay</mat-icon>Dashboard</a>
+  <a mat-raised-button class="navHeroes"
+     [ngStyle]="{ 'background-color' : isActive('/heroes')? '#cfd8dc' : '#eee', 'color' : isActive('/heroes')? '#039be5' : '#607d8b' }"
+     routerLink="/heroes"><mat-icon>work</mat-icon>Heroes</a>
+</nav>
+
+
 <h3>Top Heroes</h3>
 <div class="posDashboard">
 <mat-button-toggle-group appearance="legacy">
@@ -17,3 +28,5 @@
 </mat-button-toggle-group>
 </div>
 <app-hero-search></app-hero-search>
+
+<app-messages></app-messages>

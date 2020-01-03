@@ -3,21 +3,38 @@ var path = require("path");
 var bodyParser = require('body-parser');
 var mongo = require("mongoose");
 
+//var favicon = require('serve-favicon');//+
+var logger = require('morgan');//+
+var cookieParser = require('cookie-parser');//+
+var passport = require('passport');//+
+var cors = require('cors');//+
+
 var db = mongo.connect("mongodb+srv://BackTOH:qwe123@antoni-umfug.mongodb.net/test?retryWrites=true&w=majority", function(err, response){
   if(err){ console.log( err); }
   else{ console.log('Connected to ' + db, ' + ', response); }
 });
 
+//require('./api/models/db');
+require('./api/models/users');//+
+require('./api/config/passport');//+
+
+var routesApi = require('./api/routes/index');//+
 
 var app = express();
 app.use(bodyParser());
 app.use(bodyParser.json({limit:'5mb'}));
 app.use(bodyParser.urlencoded({extended:true}));
 
+app.use(logger('dev'));//+
+app.use(cookieParser());//+
+app.use(cors());//+
+
+
+app.use(passport.initialize());//+
+app.use('/api', routesApi);//+
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Credentials', true);
   if (req.method === 'OPTIONS') {
@@ -26,10 +43,21 @@ app.use(function (req, res, next) {
   } else {
     next();
   }
- // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
- // res.setHeader('Access-Control-Allow-Credentials', true);
-  //next();
 });
+/*
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});//+
+*/
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});//+
 
 var Schema = mongo.Schema;
 
@@ -74,13 +102,11 @@ app.put("/api/updateUser/:id",function(req,res){
 });
 
 app.delete("/api/deleteUser/:id",function(req,res){
-  //var mod = new model(req.body);
   model.findOneAndDelete({ _id: req.params.id }, function(err) {
     if(err){
       res.send(err);
     }
     else{
-      //mod['id']=data._id;
       res.send({data:"Record has been Deleted..!!"});
     }
   });
@@ -114,6 +140,7 @@ app.listen(8080, function () {
 
   console.log('Example app listening on port 8080!')
 });
+//module.exports = app;//+
 /*
 const express        = require('express');
 const MongoClient    = require('mongodb').MongoClient;
