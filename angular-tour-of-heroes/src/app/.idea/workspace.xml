@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b56d9201-6f3e-4b56-8b0b-88d0d391dea5" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1RZAxgpFgll9mXt3ZuVboSQCl2O" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b56d9201-6f3e-4b56-8b0b-88d0d391dea5" name="Default Changelist" comment="" />
+      <created>1569864493123</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1569864493123</updated>
+      <workItem from="1569864512704" duration="16000" />
+      <workItem from="1569949018725" duration="9788000" />
+      <workItem from="1570112291498" duration="17648000" />
+      <workItem from="1570182403854" duration="2825000" />
+      <workItem from="1570293931734" duration="10726000" />
+      <workItem from="1570387197834" duration="9144000" />
+      <workItem from="1570446088756" duration="4345000" />
+      <workItem from="1570453496767" duration="19542000" />
+      <workItem from="1570536382794" duration="26795000" />
+      <workItem from="1570627427442" duration="11913000" />
+      <workItem from="1570721334518" duration="11961000" />
+      <workItem from="1570872688472" duration="13311000" />
+      <workItem from="1571143432457" duration="21139000" />
+      <workItem from="1571235290397" duration="10872000" />
+      <workItem from="1571473109156" duration="7062000" />
+      <workItem from="1572277242768" duration="2042000" />
+      <workItem from="1572449704688" duration="1795000" />
+      <workItem from="1572501176749" duration="14000" />
+      <workItem from="1572875323778" duration="988000" />
+      <workItem from="1573151248656" duration="4442000" />
+      <workItem from="1573202038511" duration="25641000" />
+      <workItem from="1573315717571" duration="1770000" />
+      <workItem from="1573317527725" duration="8992000" />
+      <workItem from="1573560742284" duration="17366000" />
+      <workItem from="1573624531035" duration="1424000" />
+      <workItem from="1573661087112" duration="8355000" />
+      <workItem from="1573709801546" duration="3117000" />
+      <workItem from="1574355642981" duration="9332000" />
+      <workItem from="1575560825025" duration="4798000" />
+      <workItem from="1575617878356" duration="1148000" />
+      <workItem from="1575619809756" duration="2132000" />
+      <workItem from="1575622728376" duration="6285000" />
+      <workItem from="1575659553452" duration="3740000" />
+      <workItem from="1576319024333" duration="1200000" />
+      <workItem from="1577618010579" duration="16931000" />
+      <workItem from="1577897805504" duration="1304000" />
+      <workItem from="1577959040497" duration="28546000" />
+      <workItem from="1578045274318" duration="10426000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

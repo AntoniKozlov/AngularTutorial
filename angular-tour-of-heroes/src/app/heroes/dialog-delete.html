@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+  <h3 mat-dialog-title>Are you sure?</h3>
+  <div mat-dialog-content>
+    Id: {{data._id}}
+    <p></p>
+    Name: {{data.name}}
+    <p></p>
+    Level: {{data.level}}
+    <p></p>
+    Age: {{data.age}}
+    <p></p>
+    Class: {{data.cls}}
+    <p></p>
+    Power: {{data.power}}
+    <p></p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Delete</button>
+    <button mat-button (click)="onNoDelete()" tabindex="-1">Cancel</button>
+  </div>
+</div>
+</body>
+</html>
